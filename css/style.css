@@ -233,6 +233,76 @@ header {
     }
 }
 
+/* 移动端预览容器 */
+@media (max-width: 768px) {
+    .preview-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100dvh;
+        padding: 15px;
+        border-radius: 0;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .preview-container iframe,
+    .preview-container video {
+        height: calc(100dvh - 60px);
+        max-height: unset;
+    }
+
+    .close-preview {
+        position: sticky;
+        top: 15px;
+        right: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background: rgba(255,0,255,0.8);
+        border: 1px solid var(--button-border);
+        border-radius: 25px;
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        float: right;
+        margin-bottom: 10px;
+    }
+}
+
+/* 桌面端预览容器 */
+@media (min-width: 769px) {
+    .preview-container {
+        width: 90%;
+        max-width: 1400px;
+        height: 85vh;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        box-shadow: 0 0 20px rgba(0,255,255,0.2);
+        border: 2px solid var(--button-border);
+    }
+    
+    .close-preview {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 12px 24px;
+        background: rgba(255,0,255,0.9);
+        border: 2px solid var(--button-border);
+        border-radius: 25px;
+        font-size: 16px;
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
+
+    .close-preview:hover {
+        background: rgba(255,0,255,1);
+        transform: scale(1.05);
+    }
+}
+
 /* 错误提示样式 */
 .error {
     padding: 20px;
@@ -280,6 +350,25 @@ header {
     left: 8px;
 }
 
+/* 预览区域返回按钮样式 */
+.preview-footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.return-btn {
+    padding: 12px 24px;
+    font-size: 1.1em;
+    background: rgba(255, 0, 255, 0.8);
+    border: 1px solid var(--button-border);
+    transition: all 0.3s ease;
+}
+
+.return-btn:hover {
+    background: rgba(255, 0, 255, 1);
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+}
+
 /* 加载状态样式 */
 .loading {
     text-align: center;
@@ -303,4 +392,4 @@ header {
     to {
         transform: rotate(360deg);
     }
-} 
+}
