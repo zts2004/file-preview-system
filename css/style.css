@@ -235,19 +235,59 @@ header {
 
 /* 移动端预览容器 */
 @media (max-width: 768px) {
-  /* 移动端优化容器 */
+  #file-preview {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    max-height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    border: none;
+    border-radius: 0;
+    background: rgba(0,0,0,0.95);
+  }
+
+  .preview-content {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .close-button {
+    font-size: 32px;
+    padding: 12px;
+    right: 15px;
+    top: 15px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,0,255,0.8);
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s ease;
+    z-index: 1001;
+  }
+  .close-button:active {
+    transform: scale(0.9);
+  }
+
+  /* 保持现有移动端优化容器 */
   .mobile-preview-layer {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* 使用视窗宽度单位 */
-    height: 100vh; /* 使用视窗高度单位 */
+    width: 100vw;
+    height: 100vh;
     background: rgba(0,0,0,0.97);
     z-index: 1000;
-    overflow-y: scroll; /* 强制启用滚动 */
-    -webkit-overflow-scrolling: touch; /* 启用iOS惯性滚动 */
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     display: none;
-    overscroll-behavior: contain; /* 防止页面底层滚动 */
+    overscroll-behavior: contain;
   }
 
   /* 移动端内容容器优化 */

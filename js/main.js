@@ -300,7 +300,21 @@ async function previewFile(fileName) {
 // 关闭预览
 function closePreview() {
     document.getElementById('file-preview').classList.add('hidden');
+    document.body.classList.remove('preview-open');
 }
+
+// 手势支持
+let touchStartX = 0;
+document.getElementById('preview-content').addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+
+document.getElementById('preview-content').addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    if (Math.abs(touchEndX - touchStartX) > 50) { // 滑动超过50px触发关闭
+        closePreview();
+    }
+});
 
 // 获取文件类型图标
 function getFileIcon(fileType) {
