@@ -1,8 +1,8 @@
 // 阿里云OSS配置
 const ossConfig = {
     region: 'oss-cn-chengdu', // 西南1（成都）区域
-    accessKeyId: '******', // 请在生产环境中替换为实际的AccessKey ID
-    accessKeySecret: '******', // 请在生产环境中替换为实际的AccessKey Secret
+    accessKeyId: 'LTAI5tB9DURsU9J6GRAaqE5G',
+    accessKeySecret: 'wOTFYVoEk8qZmJxyzduriGkrozn5L8',
     bucket: 'qqzts',
     secure: true, // 使用 HTTPS
     timeout: 60000, // 超时时间设置为60秒
