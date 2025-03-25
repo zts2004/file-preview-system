@@ -235,17 +235,45 @@ header {
 
 /* 移动端预览容器 */
 @media (max-width: 768px) {
-    .preview-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100dvh;
-        padding: 15px;
-        border-radius: 0;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+  /* 移动端优化容器 */
+  .mobile-preview-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* 使用视窗宽度单位 */
+    height: 100vh; /* 使用视窗高度单位 */
+    background: rgba(0,0,0,0.97);
+    z-index: 1000;
+    overflow-y: scroll; /* 强制启用滚动 */
+    -webkit-overflow-scrolling: touch; /* 启用iOS惯性滚动 */
+    display: none;
+    overscroll-behavior: contain; /* 防止页面底层滚动 */
+  }
+
+  /* 移动端内容容器优化 */
+  .preview-content {
+    padding: 15px 10px; /* 缩小左右padding */
+    margin: 10px auto;
+    max-width: 100%;
+    min-height: calc(100vh - 40px); /* 最小高度优化 */
+    box-sizing: border-box; /* 包含padding在宽度内 */
+    background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
+    border: none;
+    box-shadow: 0 0 20px rgba(106,0,255,0.6);
+    border-radius: 0; /* 移除圆角增加可视区域 */
+  }
+
+  /* 关闭按钮优化 */
+  .cyber-close-btn {
+    position: sticky;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+    z-index: 1001;
+    backdrop-filter: blur(5px); /* 背景模糊效果 */
+  }
 
     .preview-container iframe,
     .preview-container video {
