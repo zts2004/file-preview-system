@@ -238,8 +238,8 @@ header {
 #file-preview {
     width: 100%;
     margin: 0;
-    padding: 10px 10px 40px; /* 增加底部内边距 */
-    height: 100dvh;
+    padding: calc(env(safe-area-inset-top, 20px) + 10px) 10px calc(env(safe-area-inset-bottom, 20px) + 40px);
+    height: calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px));
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
@@ -249,7 +249,7 @@ header {
     background: rgba(0,0,0,0.95);
     display: flex;
     flex-direction: column;
-    gap: 15px; /* 增加元素间距 */
+    gap: 15px;
 }
 
 .preview-content {
@@ -273,11 +273,11 @@ header {
     border-radius: 3px;
 }
 
-  .close-button {
+.close-button {
     font-size: 32px;
     padding: 12px;
     right: 5%;
-    top: env(safe-area-inset-top, 20px); /* 适配刘海屏 */
+    top: calc(env(safe-area-inset-top, 20px) + 10px);
     position: fixed;
     width: 50px;
     height: 50px;
@@ -290,8 +290,7 @@ header {
     transition: transform 0.2s ease;
     z-index: 1001;
     box-shadow: 0 0 20px rgba(255,0,255,0.5);
-    transform: none; /* 移除之前的位移 */
-  }
+}
   .close-button:active {
     transform: scale(0.9);
   }
@@ -312,17 +311,19 @@ header {
   }
 
   /* 移动端内容容器优化 */
-  .preview-content {
-    padding: 15px 10px; /* 缩小左右padding */
+.preview-content {
+    padding: 15px 10px;
     margin: 10px auto;
     max-width: 100%;
-    min-height: calc(100vh - 40px); /* 最小高度优化 */
-    box-sizing: border-box; /* 包含padding在宽度内 */
+    min-height: calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px) - 100px);
+    box-sizing: border-box;
     background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
     border: none;
     box-shadow: 0 0 20px rgba(106,0,255,0.6);
-    border-radius: 0; /* 移除圆角增加可视区域 */
-  }
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
 
   /* 关闭按钮优化 */
   .cyber-close-btn {
