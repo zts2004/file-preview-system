@@ -1,13 +1,15 @@
 // 阿里云OSS配置
 const ossConfig = {
-    region: 'oss-cn-chengdu', // 西南1（成都）区域
+    region: 'oss-cn-chengdu',
     accessKeyId: 'LTAI5tB9DURsU9J6GRAaqE5G',
     accessKeySecret: 'wOTFYVoEk8qZmJxyzduriGkrozn5L8',
     bucket: 'qqzts',
-    secure: true, // 使用 HTTPS
-    timeout: 60000, // 超时时间设置为60秒
-    cname: false, // 不使用自定义域名
-    endpoint: 'oss-cn-chengdu.aliyuncs.com', // 指定endpoint
+    secure: true,
+    timeout: 60000,
+    cname: false,
+    endpoint: 'oss-cn-chengdu.aliyuncs.com',
+    // 强制使用v4签名
+    signatureVersion: 'v4',
     cors: true, // 开启CORS
     headers: {
         'x-oss-security-token': undefined // 不使用STS Token
@@ -20,7 +22,9 @@ try {
     console.log('正在初始化OSS客户端，配置:', JSON.stringify({
         region: ossConfig.region,
         bucket: ossConfig.bucket,
-        endpoint: ossConfig.endpoint
+        endpoint: ossConfig.endpoint,
+        secure: ossConfig.secure,
+        cors: ossConfig.cors
     }));
     client = new OSS(ossConfig);
     console.log('OSS客户端初始化成功');
@@ -47,6 +51,7 @@ async function showFiles(type) {
     
     try {
         if (!client) {
+            console.error('OSS客户端未初始化');
             throw new Error('OSS客户端未初始化，请检查配置');
         }
 
@@ -77,7 +82,6 @@ async function showFiles(type) {
                 <li>CORS规则是否设置</li>
             </ul>
         </div>`;
-        alert('加载文件列表失败：' + error.message);
     }
 }
 
@@ -447,4 +451,4 @@ previewStyle.textContent = `
     max-height: 100%;
 }
 `;
-document.head.appendChild(previewStyle); 
+document.head.appendChild(previewStyle);
