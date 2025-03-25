@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚境火盾 - 文件浏览系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 引入科幻字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Canvas背景 -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- 密码验证界面 -->
+    <div id="auth-container" class="container">
+        <div class="auth-box">
+            <h2>系统验证</h2>
+            <div class="input-group">
+                <input type="password" id="password-input" placeholder="请输入访问密码" autocomplete="off">
+                <button class="cyber-button" onclick="verifyPassword()">
+                    <span class="button-content">验证</span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主界面 -->
+    <div id="main-container" class="container hidden">
+        <header>
+            <h1 class="cyber-title">虚境火盾</h1>
+            <div class="cyber-line"></div>
+        </header>
+        
+        <main>
+            <div class="button-circle">
+                <button class="cyber-button" onclick="showFiles('attachment1')">
+                    <span class="button-content">附件一</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button class="cyber-button" onclick="showFiles('attachment2')">
+                    <span class="button-content">附件二</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button class="cyber-button" onclick="showFiles('attachment3')">
+                    <span class="button-content">附件三</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button class="cyber-button" onclick="showFiles('attachment4')">
+                    <span class="button-content">附件四</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button class="cyber-button" onclick="showFiles('video')">
+                    <span class="button-content">视频</span>
+                    <div class="button-glow"></div>
+                </button>
+            </div>
+        </main>
+
+        <!-- 文件预览区域 -->
+        <div id="file-preview" class="hidden">
+            <div class="preview-header">
+                <h2 id="preview-title">文件预览</h2>
+                <button class="close-button" onclick="closePreview()">×</button>
+            </div>
+            <div id="preview-content"></div>
+        </div>
+    </div>
+
+    <!-- 添加预览相关样式 -->
+    <style>
+        .pdf-preview {
+            width: 100%;
+            height: 800px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-preview {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-preview video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+    <!-- 引入阿里云OSS SDK -->
+    <script src="https://gosspublic.alicdn.com/aliyun-oss-sdk-6.16.0.min.js"></script>
+    <!-- 引入主要逻辑 -->
+    <script src="js/main.js"></script>
+    <!-- 引入其他脚本 -->
+    <script src="js/particles.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html> 
