@@ -258,18 +258,21 @@ header {
   .close-button {
     font-size: 32px;
     padding: 12px;
-    right: 15px;
-    top: 15px;
+    right: 5%;
+    top: env(safe-area-inset-top, 20px); /* 适配刘海屏 */
+    position: fixed;
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,0,255,0.8);
+    background: rgba(255,0,255,0.9);
     border-radius: 50%;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     transition: transform 0.2s ease;
     z-index: 1001;
+    box-shadow: 0 0 20px rgba(255,0,255,0.5);
+    transform: none; /* 移除之前的位移 */
   }
   .close-button:active {
     transform: scale(0.9);
@@ -317,8 +320,11 @@ header {
 
     .preview-container iframe,
     .preview-container video {
-        height: calc(100dvh - 60px);
-        max-height: unset;
+        height: calc(100dvh - 100px); /* 使用动态视口高度 */
+        max-height: calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px) - 80px);
+        margin-top: calc(env(safe-area-inset-top, 20px) + 60px); /* 留出顶部安全区域 */
+        padding: 0 10px 20px;
+        box-sizing: border-box;
     }
 
     .close-preview {
