@@ -235,130 +235,130 @@ header {
 
 /* 移动端预览容器 */
 @media (max-width: 768px) {
-#file-preview {
-    width: 100%;
-    margin: 0;
-    padding: calc(env(safe-area-inset-top, 20px) + 10px) 10px calc(env(safe-area-inset-bottom, 20px) + 40px);
-    height: calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px));
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    touch-action: pan-y;
-    border: none;
-    border-radius: 0;
-    background: rgba(0,0,0,0.95);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.preview-content {
-    font-size: 14px;
-    line-height: 1.5;
-    flex: 1;
-    padding: calc(env(safe-area-inset-top, 20px) + 20px) 15px 30px; /* 调整内边距 */
-    overflow-y: auto; /* 启用内容区域独立滚动 */
-    scrollbar-width: none; /* 隐藏默认滚动条 */
-    -ms-overflow-style: none; /* IE兼容 */
-}
-
-/* 自定义滚动条样式 */
-.preview-content::-webkit-scrollbar {
-    width: 6px;
-    background: transparent;
-}
-
-.preview-content::-webkit-scrollbar-thumb {
-    background: rgba(255,0,255,0.4);
-    border-radius: 3px;
-}
-
-.close-button {
-    font-size: 32px;
-    padding: 12px;
-    right: 5%;
-    top: calc(env(safe-area-inset-top, 20px) + 10px);
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,0,255,0.9);
-    border-radius: 50%;
-    backdrop-filter: blur(10px);
-    transition: transform 0.2s ease;
-    z-index: 1001;
-    box-shadow: 0 0 20px rgba(255,0,255,0.5);
-}
-  .close-button:active {
-    transform: scale(0.9);
-  }
-
-  /* 保持现有移动端优化容器 */
-  .mobile-preview-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.97);
-    z-index: 1000;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    display: none;
-    overscroll-behavior: contain;
-  }
-
-  /* 移动端内容容器优化 */
-.preview-content {
-    padding: 15px 10px;
-    margin: 10px auto;
-    max-width: 100%;
-    min-height: calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px) - 100px);
-    box-sizing: border-box;
-    background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
-    border: none;
-    box-shadow: 0 0 20px rgba(106,0,255,0.6);
-    border-radius: 0;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-  /* 关闭按钮优化 */
-  .cyber-close-btn {
-    position: sticky;
-    top: 15px;
-    right: 15px;
-    width: 45px;
-    height: 45px;
-    font-size: 28px;
-    z-index: 1001;
-    backdrop-filter: blur(5px); /* 背景模糊效果 */
-  }
-
-    .preview-container iframe,
-    .preview-container video {
-        height: calc(100dvh - 100px); /* 使用动态视口高度 */
-        max-height: calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px) - 80px);
-        margin-top: calc(env(safe-area-inset-top, 20px) + 60px); /* 留出顶部安全区域 */
-        padding: 0 10px 20px;
-        box-sizing: border-box;
+    #file-preview {
+        width: 100%;
+        margin: 0;
+        padding: calc(env(safe-area-inset-top, 20px) + 10px) 10px calc(env(safe-area-inset-bottom, 20px) + 40px);
+        height: 100dvh;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.95);
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
     }
 
-    .close-preview {
+    .preview-header {
         position: sticky;
-        top: 15px;
-        right: 15px;
-        padding: 10px 20px;
-        font-size: 16px;
+        top: 0;
+        background: rgba(0,0,0,0.95);
+        padding: 10px 0;
+        z-index: 1001;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #preview-title {
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0 15px;
+    }
+
+    #preview-content {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px;
+        margin: 0;
+        height: auto;
+        max-height: calc(100dvh - 120px);
+    }
+
+    .file-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .file-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .file-icon {
+        font-size: 24px;
+        margin-right: 12px;
+    }
+
+    .file-info {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .file-name {
+        font-size: 14px;
+        color: #fff;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .file-size {
+        font-size: 12px;
+        color: rgba(255,255,255,0.6);
+    }
+
+    .preview-btn {
+        padding: 6px 12px;
+        font-size: 12px;
         background: rgba(255,0,255,0.8);
-        border: 1px solid var(--button-border);
-        border-radius: 25px;
-        backdrop-filter: blur(5px);
-        z-index: 1000;
-        float: right;
-        margin-bottom: 10px;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        margin-left: 8px;
+    }
+
+    .preview-footer {
+        position: sticky;
+        bottom: 0;
+        background: rgba(0,0,0,0.95);
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .return-btn {
+        width: 100%;
+        max-width: 200px;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* 自定义滚动条样式 */
+    #preview-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    #preview-content::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.1);
+        border-radius: 2px;
+    }
+
+    #preview-content::-webkit-scrollbar-thumb {
+        background: rgba(255,0,255,0.4);
+        border-radius: 2px;
+    }
+
+    #preview-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,0,255,0.6);
     }
 }
 
