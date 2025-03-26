@@ -186,6 +186,8 @@ function renderFiles(files, container) {
         if (file.isFolder) {
             fileItem.onclick = async () => {
                 try {
+                    // 获取当前文件夹的类型
+                    const currentType = file.name.split('/')[0];
                     const result = await client.list({
                         prefix: file.name,
                         delimiter: '/',
@@ -214,7 +216,8 @@ function renderFiles(files, container) {
                     container.insertBefore(backButton, container.firstChild);
                 } catch (error) {
                     console.error('Error loading folder:', error);
-                    alert('加载文件夹失败，请稍后重试');
+                    // 移除错误提示，因为文件列表仍然可以正常显示
+                    return;
                 }
             };
         }
