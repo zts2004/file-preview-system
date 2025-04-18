@@ -361,7 +361,7 @@ function getTypeName(type) {
         attachment2: '附件二',
         attachment3: '附件三',
         attachment4: '附件四',
-        video: '视频'
+        video: '视频及其它资料'
     };
     return names[type] || type;
 }
